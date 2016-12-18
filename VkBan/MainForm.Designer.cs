@@ -43,14 +43,16 @@
             this.miniprogressBar = new System.Windows.Forms.ProgressBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.TwoAuthChekBox = new System.Windows.Forms.CheckBox();
+            this.TwoAuthTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OkButton
             // 
             this.OkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OkButton.Location = new System.Drawing.Point(12, 130);
+            this.OkButton.Location = new System.Drawing.Point(12, 151);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(156, 47);
             this.OkButton.TabIndex = 0;
@@ -77,9 +79,9 @@
             // KeyTextBox
             // 
             this.KeyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.KeyTextBox.Location = new System.Drawing.Point(196, 155);
+            this.KeyTextBox.Location = new System.Drawing.Point(181, 176);
             this.KeyTextBox.Name = "KeyTextBox";
-            this.KeyTextBox.Size = new System.Drawing.Size(365, 22);
+            this.KeyTextBox.Size = new System.Drawing.Size(382, 22);
             this.KeyTextBox.TabIndex = 5;
             this.KeyTextBox.Text = "вейп,cs go,раздача,ключи";
             // 
@@ -105,7 +107,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(230, 130);
+            this.label3.Location = new System.Drawing.Point(239, 151);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(291, 20);
             this.label3.TabIndex = 8;
@@ -143,12 +145,14 @@
             // backgroundWorker
             // 
             this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(12, 199);
+            this.progressBar.Location = new System.Drawing.Point(12, 235);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(549, 23);
             this.progressBar.TabIndex = 12;
@@ -156,7 +160,7 @@
             // 
             // miniprogressBar
             // 
-            this.miniprogressBar.Location = new System.Drawing.Point(12, 183);
+            this.miniprogressBar.Location = new System.Drawing.Point(12, 219);
             this.miniprogressBar.Name = "miniprogressBar";
             this.miniprogressBar.Size = new System.Drawing.Size(549, 10);
             this.miniprogressBar.TabIndex = 13;
@@ -165,7 +169,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 226);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 266);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(575, 22);
             this.statusStrip1.TabIndex = 14;
@@ -176,11 +180,46 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // TwoAuthChekBox
+            // 
+            this.TwoAuthChekBox.AutoSize = true;
+            this.TwoAuthChekBox.Location = new System.Drawing.Point(12, 128);
+            this.TwoAuthChekBox.Name = "TwoAuthChekBox";
+            this.TwoAuthChekBox.Size = new System.Drawing.Size(192, 17);
+            this.TwoAuthChekBox.TabIndex = 15;
+            this.TwoAuthChekBox.Text = "Двухфакторная аутентификация";
+            this.TwoAuthChekBox.UseVisualStyleBackColor = true;
+            this.TwoAuthChekBox.CheckedChanged += new System.EventHandler(this.TwoAuth_CheckedChanged);
+            // 
+            // TwoAuthTextBox
+            // 
+            this.TwoAuthTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TwoAuthTextBox.Location = new System.Drawing.Point(270, 87);
+            this.TwoAuthTextBox.Name = "TwoAuthTextBox";
+            this.TwoAuthTextBox.Size = new System.Drawing.Size(102, 22);
+            this.TwoAuthTextBox.TabIndex = 16;
+            this.TwoAuthTextBox.Visible = false;
+            this.TwoAuthTextBox.TextChanged += new System.EventHandler(this.TwoAuthTextBox_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(305, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Код";
+            this.label4.Visible = false;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 248);
+            this.ClientSize = new System.Drawing.Size(575, 288);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.TwoAuthTextBox);
+            this.Controls.Add(this.TwoAuthChekBox);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.miniprogressBar);
             this.Controls.Add(this.progressBar);
@@ -196,6 +235,9 @@
             this.Controls.Add(this.OkButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VkBan";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -221,7 +263,9 @@
         private System.Windows.Forms.ProgressBar miniprogressBar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.CheckBox TwoAuthChekBox;
+        private System.Windows.Forms.TextBox TwoAuthTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }
 
